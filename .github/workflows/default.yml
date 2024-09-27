@@ -62,7 +62,10 @@ jobs:
           echo "获取到最新版本号: $version_name"
           echo "下载地址: $download_url"
 
-          wget -U "Mozilla/5.0" -O "QQ-$version_name.apk" $download_url
+          wget -nv -U "Mozilla/5.0" -O "QQ-$version_name.apk" $download_url
+
+        env:
+          response: 0
       # wget -U "Mozilla/5.0" -O QQ-latest.apk https://d.apkpure.net/b/APK/com.tencent.mobileqq?version=latest
 
 
@@ -71,6 +74,7 @@ jobs:
         run: |
           java -jar LSPatch.jar "QQ-$version_name.apk" -m QAuxiliary.apk,XAutoDaily.apk,TSBattery.apk,QQCleaner.apk -l 2
           echo $response
+          echo 1
 
       # 获取模块版本信息
 
